@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+    {# Prefetch for album pages now #}
+    <link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
+    <link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css" />
+    <link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" />
+    <link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css" />
+    <link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.min.js" />
+    <link rel="prefetch" href="{{ theme.url }}/js/gallery.js" />
+    <link rel="prefetch" href="{{ theme.url }}/js/albums.js" />
+{% endblock %}
+
+{% block content %}
+        <div id="albums">
+          <ul>
+            {% for alb in album.albums %}
+            <li><a href="{{ alb.url }}">
+              <div class="album_thumb">
+                  <img class="album_thumb_img" src="{{ alb.thumbnail }}" alt="{{ alb.name }}" title="{{ alb.name }}"
+                  /></a>
+              </div>
+              <span class="album_title">{{ alb.title }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% if album.description %}
+        <div id="description">
+          {{ album.description }}
+        </div>
+        {% endif %}
+{% endblock %}
+
+{% block late_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ theme.url }}/js/albums.js"></script>
+
+{% endblock %}

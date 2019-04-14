@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="{{ settings.html_language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{{ album.title|striptags }}</title>
+    <meta name="description" content="">
+    <meta name="author" content="{{ album.author }}">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{{ theme.url }}/css/style.css">
+    {% block extra_head %}{% endblock extra_head %}
+    {% include 'analytics.html' %}
+  </head>
+  <body>
+    {% include 'gtm.html' %}
+    <div class="container">
+      <header>
+        <h1><a href="{{ album.index_url }}">{{ index_title }}</a></h1>
+
+        {% include 'links.html' %}
+        {% include 'breadcrumb.html' %}
+        {% if album.breadcrumb %}
+        <hr>
+        {% endif %}
+      </header>
+
+      <div id="main" role="main" class=main>
+	      {% block content %}{% endblock content %}
+      </div>
+      {% include 'footer.html' %}
+    </div>
+    {% block late_js %}{% endblock late_js %}
+    {% include 'piwik.html' %}
+  </body>
+</html>

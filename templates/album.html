@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+        {% for media in album.medias %}
+        {% if media.type == "video" %}
+        <div style="display:none;" id="video{{ loop.index0 }}">
+          <video class="lg-video-object lg-html5" controls="" preload="none">
+            <source src="{{ media.url }}" type="{{ media.mime }}">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <div id="gallery">
+        {% for media in album.medias %}
+          {% if media.type == "image" %}
+          <a href="{{ media.url }}">
+            <img src="{{ media.thumbnail }}" alt="{{ media.title }}" />
+          </a>
+          {% endif %}
+
+          {% if media.type == "video" %}
+            <div class="video" data-poster="{{ media.thumbnail }}" data-sub-html="{{ media.title }}" data-html="#video{{ loop.index0 }}">
+              <a href="{{ media.url }}">
+                <img src="{{ media.thumbnail }}" alt="{{ media.title }}" />
+              </a>
+              <div class="caption">
+                {{ media.title }}
+              </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+        </div>
+
+        {% if album.description %}
+        <div id="description">
+          {{ album.description }}
+        </div>
+        {% endif %}
+{% endblock %}
+
+{% block late_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+    <script src="{{ theme.url }}/js/gallery.js"></script>
+
+{% endblock %}
