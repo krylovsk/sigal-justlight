@@ -41,11 +41,11 @@
 {% endblock %}
 
 {% block late_js %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+    <script src="{{ theme.url }}/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ theme.url }}/css/justifiedGallery.min.css" />
+    <script src="{{ theme.url }}/js/jquery.justifiedGallery.min.js"></script>
+    <link rel="stylesheet" href="{{ theme.url }}/css/lightgallery.min.css" />
+    <script src="{{ theme.url }}/js/lightgallery-all.min.js"></script>
     <script src="{{ theme.url }}/js/gallery.js"></script>
 
 {% endblock %}
